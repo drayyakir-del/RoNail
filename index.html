@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ronail — אומנות הציפורניים</title>
+<meta name="description" content="Ronail — סטודיו פרטי לציפורניים בבאר שבע. מניקור, בנייה ונייל ארט ביחס אישי.">
+<script>
+/* נגישות · החלת העדפות המשתמש לפני צביעה (מניעת הבהוב) */
+(function(){try{var p=JSON.parse(localStorage.getItem('ronail_a11y_v1')||'{}');if(p.version!==1)return;var c=document.documentElement.classList;
+c.toggle('a11y-links',!!p.links);
+c.toggle('a11y-contrast-high',!!p.contrast);
+c.toggle('a11y-text-115',p.textSize===115);
+c.toggle('a11y-text-130',p.textSize===130);
+c.toggle('a11y-text-150',p.textSize===150);
+c.toggle('a11y-lines-16',p.lines===16);
+c.toggle('a11y-lines-20',p.lines===20);
+c.toggle('a11y-readable',!!p.readable);
+c.toggle('a11y-headings',!!p.headings);
+c.toggle('a11y-reduce-motion',!!p.motion);
+}catch(e){}})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<nav id="nav" aria-label="ניווט ראשי">
+  <a href="#hero-title" class="logo" aria-label="Ronail — לעמוד הבית">Ro<span>nail</span></a>
+  <div class="navlinks" id="navlinks">
+    <span class="menu-head">Ro<i>nail</i></span>
+    <a href="#services">טיפולים</a>
+    <a href="#gallery">גלריה</a>
+    <a href="#about">הסטודיו</a>
+    <a href="#contact" class="nav-cta">קביעת תור</a>
+    <div class="menu-foot">
+      <p class="menu-hours">ראשון–חמישי · 9:00–20:00</p>
+      <div class="menu-social">
+        <a href="https://wa.me/972535221252" aria-label="וואטסאפ" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.9.9-2.7-.2-.3A8 8 0 1 1 12 20Zm4.4-5.6c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.6 4 3.5 1.5.6 2.1.6 2.8.5.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1-.1-.1-.2-.2-.5-.3Z"/></svg>
+        </a>
+        <a href="https://instagram.com" aria-label="אינסטגרם" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="tel:+972535221252" aria-label="טלפון">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .7-.2 1l-2.2 2.2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <button class="burger" id="burger" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="navlinks">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main id="main-content" tabindex="-1">
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="eyebrow">הסטודיו הפרטי שלך · באר שבע</div>
+  <h1 id="hero-title">
+    <span class="word">בואי</span>
+    <span class="word accent"><i class="gloss">תצאי</i></span>
+    <span class="word">זוהרת</span>
+  </h1>
+  <svg class="hero-stroke" viewBox="0 0 540 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="heroStrokeG" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#E8A0AE"/>
+        <stop offset="0.5" stop-color="#C76B7E"/>
+        <stop offset="1" stop-color="#C9A86A"/>
+      </linearGradient>
+    </defs>
+    <path class="brush" d="M14 34 C 120 14, 230 46, 330 26 S 470 22, 526 30"/>
+    <circle class="glint" cx="430" cy="25" r="3.4"/>
+  </svg>
+  <p>שעה אחת רק שלך — בלי למהר, בלי לחץ. כוס קפה ביד, שיחה טובה, וצבע שנבחר בדיוק בשבילך. את יוצאת מכאן עם ידיים שמחזירות לך חיוך בכל פעם שאת מסתכלת עליהן.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView()">בואי נשריין לך תור</button>
+    <button class="btn-ghost" onclick="document.getElementById('gallery').scrollIntoView()">רוצה לראות עבודות</button>
+  </div>
+  <div class="hero-note">
+    <span class="pulse"></span>
+    <span>התור הקרוב פנוי כבר <b>השבוע</b> · יש גם שעות ערב 🤍</span>
+  </div>
+
+</header>
+
+<!-- ====== interactive manicure try-on ====== -->
+<section class="tryon" id="polishScroll" aria-label="נסי גוון — מניקור אינטראקטיבי">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">מעל 200 גוונים על השולחן</div>
+      <h2>נמצא יחד את <em>הצבע</em><br>שמרגיש בדיוק כמוך</h2>
+      <p class="tryon-hint">קדימה, שחקי רגע — בחרי גוון למטה והציפורניים ייצבעו. ככה בדיוק זה מרגיש אצלנו בסטודיו.</p>
+    </div>
+    <div class="tryon-stage reveal">
+      <svg class="tryon-hand" id="tryonHand" viewBox="0 0 520 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="איור אצבעות של שתי ידיים עם ציפורניים שנצבעות בגוון הנבחר">
+        <defs>
+          <linearGradient id="skinG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#F7E1D2"/><stop offset="1" stop-color="#EAC5B0"/>
+          </linearGradient>
+          <linearGradient id="sideG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#B06C52" stop-opacity="0"/>
+            <stop offset=".72" stop-color="#B06C52" stop-opacity="0"/>
+            <stop offset="1" stop-color="#B06C52" stop-opacity=".2"/>
+          </linearGradient>
+          <linearGradient id="gradOmbre" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="0" y2="-24">
+            <stop offset="0" stop-color="#F2BFCB"/><stop offset=".45" stop-color="#E7B99B"/><stop offset="1" stop-color="#D9B26A"/>
+          </linearGradient>
+          <linearGradient id="gradHolo" gradientUnits="userSpaceOnUse" x1="-14" y1="18" x2="14" y2="-18">
+            <stop offset="0" stop-color="#AEE3F2"/><stop offset=".38" stop-color="#C9B6E4"/><stop offset=".66" stop-color="#F2BFCB"/><stop offset="1" stop-color="#F6E7B2"/>
+          </linearGradient>
+          <linearGradient id="gradLilac" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="0" y2="-24">
+            <stop offset="0" stop-color="#F2BFCB"/><stop offset="1" stop-color="#C9B6E4"/>
+          </linearGradient>
+          <linearGradient id="gradRoseGold" gradientUnits="userSpaceOnUse" x1="-14" y1="18" x2="14" y2="-18">
+            <stop offset="0" stop-color="#C97B65"/><stop offset=".45" stop-color="#F4CBB8"/><stop offset=".62" stop-color="#F9E2D4"/><stop offset="1" stop-color="#D98E7A"/>
+          </linearGradient>
+          <linearGradient id="gradSplit" gradientUnits="userSpaceOnUse" x1="-14" y1="0" x2="14" y2="0">
+            <stop offset="0" stop-color="#7A3247"/><stop offset=".5" stop-color="#7A3247"/>
+            <stop offset=".5" stop-color="#F7E1E3"/><stop offset="1" stop-color="#F7E1E3"/>
+          </linearGradient>
+          <linearGradient id="gradSunset" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="0" y2="-24">
+            <stop offset="0" stop-color="#F2A48E"/><stop offset=".55" stop-color="#F6C98F"/><stop offset="1" stop-color="#D9B26A"/>
+          </linearGradient>
+          <filter id="soft" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="4"/>
+          </filter>
+                    <clipPath id="fnc0"><path transform="translate(62 322) rotate(-16) translate(0 -180.2)" d="M0,-19.8 C5.5,-16.8 10.0,-5.0 10.0,1.6 C10.0,11.9 6.0,19.8 0,19.8 C-6.0,19.8 -10.0,11.9 -10.0,1.6 C-10.0,-5.0 -5.5,-16.8 0,-19.8 Z"/></clipPath>
+          <clipPath id="fnc1"><path transform="translate(106 332) rotate(-9) translate(0 -230.4)" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z"/></clipPath>
+          <clipPath id="fnc2"><path transform="translate(150 337) rotate(-4) translate(0 -249.2)" d="M0,-22.8 C6.3,-19.4 11.5,-5.7 11.5,1.8 C11.5,13.7 6.9,22.8 0,22.8 C-6.9,22.8 -11.5,13.7 -11.5,1.8 C-11.5,-5.7 -6.3,-19.4 0,-22.8 Z"/></clipPath>
+          <clipPath id="fnc3"><path transform="translate(194 332) rotate(1) translate(0 -224.4)" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z"/></clipPath>
+          <clipPath id="fnc4"><path transform="translate(326 332) rotate(-1) translate(0 -224.4)" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z"/></clipPath>
+          <clipPath id="fnc5"><path transform="translate(370 337) rotate(4) translate(0 -249.2)" d="M0,-22.8 C6.3,-19.4 11.5,-5.7 11.5,1.8 C11.5,13.7 6.9,22.8 0,22.8 C-6.9,22.8 -11.5,13.7 -11.5,1.8 C-11.5,-5.7 -6.3,-19.4 0,-22.8 Z"/></clipPath>
+          <clipPath id="fnc6"><path transform="translate(414 332) rotate(9) translate(0 -230.4)" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z"/></clipPath>
+          <clipPath id="fnc7"><path transform="translate(458 322) rotate(16) translate(0 -180.2)" d="M0,-19.8 C5.5,-16.8 10.0,-5.0 10.0,1.6 C10.0,11.9 6.0,19.8 0,19.8 C-6.0,19.8 -10.0,11.9 -10.0,1.6 C-10.0,-5.0 -5.5,-16.8 0,-19.8 Z"/></clipPath>
+        </defs>
+        <!-- l-pinky -->
+        <g transform="translate(62 322) rotate(-16)">
+          <path d="M-16.5,0 C-17.9,-76.0 -14.4,-140.0 -12.2,-187.8 C-12.2,-204.4 12.2,-204.4 12.2,-187.8 C14.4,-140.0 17.9,-76.0 16.5,0 Z" fill="url(#skinG)"/>
+          <path d="M-16.5,0 C-17.9,-76.0 -14.4,-140.0 -12.2,-187.8 C-12.2,-204.4 12.2,-204.4 12.2,-187.8 C14.4,-140.0 17.9,-76.0 16.5,0 Z" fill="url(#sideG)"/>
+          <ellipse cx="-4.0" cy="-104.0" rx="5.0" ry="60.0" fill="#fff" opacity=".18" filter="url(#soft)"/>
+          <path d="M-8.6,-84.0 Q0,-79.0 8.6,-84.0" fill="none" stroke="#DFAE94" stroke-width="1.4" stroke-linecap="round" opacity=".38"/>
+          <path d="M-7.9,-136.0 Q0,-131.4 7.9,-136.0" fill="none" stroke="#DFAE94" stroke-width="1.2" stroke-linecap="round" opacity=".3"/>
+          <path d="M-8.0,-165.3 Q0,-154.9 8.0,-165.3" fill="none" stroke="#E0B098" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <g transform="translate(0 -180.2)">
+            <path d="M0,-19.8 C5.5,-16.8 10.0,-5.0 10.0,1.6 C10.0,11.9 6.0,19.8 0,19.8 C-6.0,19.8 -10.0,11.9 -10.0,1.6 C-10.0,-5.0 -5.5,-16.8 0,-19.8 Z" fill="#F3E0D8" stroke="#E2B49C" stroke-width=".7"/>
+          </g>
+        </g>
+        <g clip-path="url(#fnc0)">
+          <g transform="translate(62 322) rotate(-16) translate(0 -180.2)">
+            <g class="nail-paint" style="--d:.12s">
+              <path class="paint-fill" d="M0,-19.8 C5.5,-16.8 10.0,-5.0 10.0,1.6 C10.0,11.9 6.0,19.8 0,19.8 C-6.0,19.8 -10.0,11.9 -10.0,1.6 C-10.0,-5.0 -5.5,-16.8 0,-19.8 Z" fill="#F2BFCB"/>
+              <path class="art-french" d="M0,-19.8 C5.5,-16.8 10.0,-5.0 10.0,-2.4 C4.5,-0.4 -4.5,-0.4 -10.0,-2.4 C-10.0,-5.0 -5.5,-16.8 0,-19.8 Z" fill="#FFFFFF" opacity="0"/>
+              <g class="art-glitter" opacity="0"><circle cx="-3.5" cy="-9.9" r="1.2" fill="#fff"/><circle cx="3.0" cy="-5.9" r="1" fill="#fff"/><circle cx="-1.0" cy="3.0" r="1.3" fill="#fff"/><circle cx="4.5" cy="-12.9" r="0.9" fill="#fff"/><circle cx="-5.0" cy="7.9" r="1" fill="#fff"/><circle cx="0.5" cy="-15.8" r="0.8" fill="#fff"/><circle cx="3.5" cy="6.9" r="0.95" fill="#F5D98A"/><circle cx="-3.0" cy="-2.4" r="0.85" fill="#F5D98A"/></g>
+            </g>
+            <ellipse cx="-3.5" cy="-5.9" rx="2.4" ry="7.9" fill="#fff" opacity=".38" transform="rotate(-14)"/>
+          </g>
+        </g>
+        <!-- l-ring -->
+        <g transform="translate(106 332) rotate(-9)">
+          <path d="M-18.0,0 C-19.4,-95.8 -15.5,-176.4 -13.3,-238.7 C-13.3,-256.8 13.3,-256.8 13.3,-238.7 C15.5,-176.4 19.4,-95.8 18.0,0 Z" fill="url(#skinG)"/>
+          <path d="M-18.0,0 C-19.4,-95.8 -15.5,-176.4 -13.3,-238.7 C-13.3,-256.8 13.3,-256.8 13.3,-238.7 C15.5,-176.4 19.4,-95.8 18.0,0 Z" fill="url(#sideG)"/>
+          <ellipse cx="-4.3" cy="-131.0" rx="5.4" ry="75.6" fill="#fff" opacity=".18" filter="url(#soft)"/>
+          <path d="M-9.4,-105.8 Q0,-99.5 9.4,-105.8" fill="none" stroke="#DFAE94" stroke-width="1.4" stroke-linecap="round" opacity=".38"/>
+          <path d="M-8.6,-171.4 Q0,-165.6 8.6,-171.4" fill="none" stroke="#DFAE94" stroke-width="1.2" stroke-linecap="round" opacity=".3"/>
+          <path d="M-8.7,-214.2 Q0,-202.8 8.7,-214.2" fill="none" stroke="#E0B098" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <g transform="translate(0 -230.4)">
+            <path d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#F3E0D8" stroke="#E2B49C" stroke-width=".7"/>
+          </g>
+        </g>
+        <g clip-path="url(#fnc1)">
+          <g transform="translate(106 332) rotate(-9) translate(0 -230.4)">
+            <g class="nail-paint" style="--d:.06s">
+              <path class="paint-fill" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#F2BFCB"/>
+              <path class="art-french" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,-2.6 C4.9,-0.4 -4.9,-0.4 -10.9,-2.6 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#FFFFFF" opacity="0"/>
+              <g class="art-glitter" opacity="0"><circle cx="-3.8" cy="-10.8" r="1.2" fill="#fff"/><circle cx="3.3" cy="-6.5" r="1" fill="#fff"/><circle cx="-1.1" cy="3.2" r="1.3" fill="#fff"/><circle cx="4.9" cy="-14.0" r="0.9" fill="#fff"/><circle cx="-5.5" cy="8.6" r="1" fill="#fff"/><circle cx="0.5" cy="-17.3" r="0.8" fill="#fff"/><circle cx="3.8" cy="7.6" r="0.95" fill="#F5D98A"/><circle cx="-3.3" cy="-2.6" r="0.85" fill="#F5D98A"/></g>
+            </g>
+            <ellipse cx="-3.8" cy="-6.5" rx="2.6" ry="8.6" fill="#fff" opacity=".38" transform="rotate(-14)"/>
+          </g>
+        </g>
+        <!-- l-middle -->
+        <g transform="translate(150 337) rotate(-4)">
+          <path d="M-19.0,0 C-20.4,-103.4 -16.3,-190.4 -14.1,-257.9 C-14.1,-277.1 14.1,-277.1 14.1,-257.9 C16.3,-190.4 20.4,-103.4 19.0,0 Z" fill="url(#skinG)"/>
+          <path d="M-19.0,0 C-20.4,-103.4 -16.3,-190.4 -14.1,-257.9 C-14.1,-277.1 14.1,-277.1 14.1,-257.9 C16.3,-190.4 20.4,-103.4 19.0,0 Z" fill="url(#sideG)"/>
+          <ellipse cx="-4.6" cy="-141.4" rx="5.7" ry="81.6" fill="#fff" opacity=".18" filter="url(#soft)"/>
+          <path d="M-9.9,-114.2 Q0,-107.4 9.9,-114.2" fill="none" stroke="#DFAE94" stroke-width="1.4" stroke-linecap="round" opacity=".38"/>
+          <path d="M-9.1,-185.0 Q0,-178.7 9.1,-185.0" fill="none" stroke="#DFAE94" stroke-width="1.2" stroke-linecap="round" opacity=".3"/>
+          <path d="M-9.2,-232.1 Q0,-220.0 9.2,-232.1" fill="none" stroke="#E0B098" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <g transform="translate(0 -249.2)">
+            <path d="M0,-22.8 C6.3,-19.4 11.5,-5.7 11.5,1.8 C11.5,13.7 6.9,22.8 0,22.8 C-6.9,22.8 -11.5,13.7 -11.5,1.8 C-11.5,-5.7 -6.3,-19.4 0,-22.8 Z" fill="#F3E0D8" stroke="#E2B49C" stroke-width=".7"/>
+          </g>
+        </g>
+        <g clip-path="url(#fnc2)">
+          <g transform="translate(150 337) rotate(-4) translate(0 -249.2)">
+            <g class="nail-paint" style="--d:0s">
+              <path class="paint-fill" d="M0,-22.8 C6.3,-19.4 11.5,-5.7 11.5,1.8 C11.5,13.7 6.9,22.8 0,22.8 C-6.9,22.8 -11.5,13.7 -11.5,1.8 C-11.5,-5.7 -6.3,-19.4 0,-22.8 Z" fill="#F2BFCB"/>
+              <path class="art-french" d="M0,-22.8 C6.3,-19.4 11.5,-5.7 11.5,-2.7 C5.2,-0.5 -5.2,-0.5 -11.5,-2.7 C-11.5,-5.7 -6.3,-19.4 0,-22.8 Z" fill="#FFFFFF" opacity="0"/>
+              <g class="art-glitter" opacity="0"><circle cx="-4.0" cy="-11.4" r="1.2" fill="#fff"/><circle cx="3.5" cy="-6.8" r="1" fill="#fff"/><circle cx="-1.2" cy="3.4" r="1.3" fill="#fff"/><circle cx="5.2" cy="-14.8" r="0.9" fill="#fff"/><circle cx="-5.8" cy="9.1" r="1" fill="#fff"/><circle cx="0.6" cy="-18.2" r="0.8" fill="#fff"/><circle cx="4.0" cy="8.0" r="0.95" fill="#F5D98A"/><circle cx="-3.5" cy="-2.7" r="0.85" fill="#F5D98A"/></g>
+            </g>
+            <ellipse cx="-4.0" cy="-6.8" rx="2.8" ry="9.1" fill="#fff" opacity=".38" transform="rotate(-14)"/>
+          </g>
+        </g>
+        <!-- l-index -->
+        <g transform="translate(194 332) rotate(1)">
+          <path d="M-18.0,0 C-19.4,-93.5 -15.5,-172.2 -13.3,-232.7 C-13.3,-250.8 13.3,-250.8 13.3,-232.7 C15.5,-172.2 19.4,-93.5 18.0,0 Z" fill="url(#skinG)"/>
+          <path d="M-18.0,0 C-19.4,-93.5 -15.5,-172.2 -13.3,-232.7 C-13.3,-250.8 13.3,-250.8 13.3,-232.7 C15.5,-172.2 19.4,-93.5 18.0,0 Z" fill="url(#sideG)"/>
+          <ellipse cx="-4.3" cy="-127.9" rx="5.4" ry="73.8" fill="#fff" opacity=".18" filter="url(#soft)"/>
+          <path d="M-9.4,-103.3 Q0,-97.2 9.4,-103.3" fill="none" stroke="#DFAE94" stroke-width="1.4" stroke-linecap="round" opacity=".38"/>
+          <path d="M-8.6,-167.3 Q0,-161.6 8.6,-167.3" fill="none" stroke="#DFAE94" stroke-width="1.2" stroke-linecap="round" opacity=".3"/>
+          <path d="M-8.7,-208.2 Q0,-196.8 8.7,-208.2" fill="none" stroke="#E0B098" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <g transform="translate(0 -224.4)">
+            <path d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#F3E0D8" stroke="#E2B49C" stroke-width=".7"/>
+          </g>
+        </g>
+        <g clip-path="url(#fnc3)">
+          <g transform="translate(194 332) rotate(1) translate(0 -224.4)">
+            <g class="nail-paint" style="--d:.06s">
+              <path class="paint-fill" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#F2BFCB"/>
+              <path class="art-french" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,-2.6 C4.9,-0.4 -4.9,-0.4 -10.9,-2.6 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#FFFFFF" opacity="0"/>
+              <g class="art-glitter" opacity="0"><circle cx="-3.8" cy="-10.8" r="1.2" fill="#fff"/><circle cx="3.3" cy="-6.5" r="1" fill="#fff"/><circle cx="-1.1" cy="3.2" r="1.3" fill="#fff"/><circle cx="4.9" cy="-14.0" r="0.9" fill="#fff"/><circle cx="-5.5" cy="8.6" r="1" fill="#fff"/><circle cx="0.5" cy="-17.3" r="0.8" fill="#fff"/><circle cx="3.8" cy="7.6" r="0.95" fill="#F5D98A"/><circle cx="-3.3" cy="-2.6" r="0.85" fill="#F5D98A"/></g>
+            </g>
+            <ellipse cx="-3.8" cy="-6.5" rx="2.6" ry="8.6" fill="#fff" opacity=".38" transform="rotate(-14)"/>
+          </g>
+        </g>
+        <!-- r-index -->
+        <g transform="translate(326 332) rotate(-1)">
+          <path d="M-18.0,0 C-19.4,-93.5 -15.5,-172.2 -13.3,-232.7 C-13.3,-250.8 13.3,-250.8 13.3,-232.7 C15.5,-172.2 19.4,-93.5 18.0,0 Z" fill="url(#skinG)"/>
+          <path d="M-18.0,0 C-19.4,-93.5 -15.5,-172.2 -13.3,-232.7 C-13.3,-250.8 13.3,-250.8 13.3,-232.7 C15.5,-172.2 19.4,-93.5 18.0,0 Z" fill="url(#sideG)"/>
+          <ellipse cx="-4.3" cy="-127.9" rx="5.4" ry="73.8" fill="#fff" opacity=".18" filter="url(#soft)"/>
+          <path d="M-9.4,-103.3 Q0,-97.2 9.4,-103.3" fill="none" stroke="#DFAE94" stroke-width="1.4" stroke-linecap="round" opacity=".38"/>
+          <path d="M-8.6,-167.3 Q0,-161.6 8.6,-167.3" fill="none" stroke="#DFAE94" stroke-width="1.2" stroke-linecap="round" opacity=".3"/>
+          <path d="M-8.7,-208.2 Q0,-196.8 8.7,-208.2" fill="none" stroke="#E0B098" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <g transform="translate(0 -224.4)">
+            <path d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#F3E0D8" stroke="#E2B49C" stroke-width=".7"/>
+          </g>
+        </g>
+        <g clip-path="url(#fnc4)">
+          <g transform="translate(326 332) rotate(-1) translate(0 -224.4)">
+            <g class="nail-paint" style="--d:.06s">
+              <path class="paint-fill" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#F2BFCB"/>
+              <path class="art-french" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,-2.6 C4.9,-0.4 -4.9,-0.4 -10.9,-2.6 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#FFFFFF" opacity="0"/>
+              <g class="art-glitter" opacity="0"><circle cx="-3.8" cy="-10.8" r="1.2" fill="#fff"/><circle cx="3.3" cy="-6.5" r="1" fill="#fff"/><circle cx="-1.1" cy="3.2" r="1.3" fill="#fff"/><circle cx="4.9" cy="-14.0" r="0.9" fill="#fff"/><circle cx="-5.5" cy="8.6" r="1" fill="#fff"/><circle cx="0.5" cy="-17.3" r="0.8" fill="#fff"/><circle cx="3.8" cy="7.6" r="0.95" fill="#F5D98A"/><circle cx="-3.3" cy="-2.6" r="0.85" fill="#F5D98A"/></g>
+            </g>
+            <ellipse cx="-3.8" cy="-6.5" rx="2.6" ry="8.6" fill="#fff" opacity=".38" transform="rotate(-14)"/>
+          </g>
+        </g>
+        <!-- r-middle -->
+        <g transform="translate(370 337) rotate(4)">
+          <path d="M-19.0,0 C-20.4,-103.4 -16.3,-190.4 -14.1,-257.9 C-14.1,-277.1 14.1,-277.1 14.1,-257.9 C16.3,-190.4 20.4,-103.4 19.0,0 Z" fill="url(#skinG)"/>
+          <path d="M-19.0,0 C-20.4,-103.4 -16.3,-190.4 -14.1,-257.9 C-14.1,-277.1 14.1,-277.1 14.1,-257.9 C16.3,-190.4 20.4,-103.4 19.0,0 Z" fill="url(#sideG)"/>
+          <ellipse cx="-4.6" cy="-141.4" rx="5.7" ry="81.6" fill="#fff" opacity=".18" filter="url(#soft)"/>
+          <path d="M-9.9,-114.2 Q0,-107.4 9.9,-114.2" fill="none" stroke="#DFAE94" stroke-width="1.4" stroke-linecap="round" opacity=".38"/>
+          <path d="M-9.1,-185.0 Q0,-178.7 9.1,-185.0" fill="none" stroke="#DFAE94" stroke-width="1.2" stroke-linecap="round" opacity=".3"/>
+          <path d="M-9.2,-232.1 Q0,-220.0 9.2,-232.1" fill="none" stroke="#E0B098" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <g transform="translate(0 -249.2)">
+            <path d="M0,-22.8 C6.3,-19.4 11.5,-5.7 11.5,1.8 C11.5,13.7 6.9,22.8 0,22.8 C-6.9,22.8 -11.5,13.7 -11.5,1.8 C-11.5,-5.7 -6.3,-19.4 0,-22.8 Z" fill="#F3E0D8" stroke="#E2B49C" stroke-width=".7"/>
+          </g>
+        </g>
+        <g clip-path="url(#fnc5)">
+          <g transform="translate(370 337) rotate(4) translate(0 -249.2)">
+            <g class="nail-paint" style="--d:0s">
+              <path class="paint-fill" d="M0,-22.8 C6.3,-19.4 11.5,-5.7 11.5,1.8 C11.5,13.7 6.9,22.8 0,22.8 C-6.9,22.8 -11.5,13.7 -11.5,1.8 C-11.5,-5.7 -6.3,-19.4 0,-22.8 Z" fill="#F2BFCB"/>
+              <path class="art-french" d="M0,-22.8 C6.3,-19.4 11.5,-5.7 11.5,-2.7 C5.2,-0.5 -5.2,-0.5 -11.5,-2.7 C-11.5,-5.7 -6.3,-19.4 0,-22.8 Z" fill="#FFFFFF" opacity="0"/>
+              <g class="art-glitter" opacity="0"><circle cx="-4.0" cy="-11.4" r="1.2" fill="#fff"/><circle cx="3.5" cy="-6.8" r="1" fill="#fff"/><circle cx="-1.2" cy="3.4" r="1.3" fill="#fff"/><circle cx="5.2" cy="-14.8" r="0.9" fill="#fff"/><circle cx="-5.8" cy="9.1" r="1" fill="#fff"/><circle cx="0.6" cy="-18.2" r="0.8" fill="#fff"/><circle cx="4.0" cy="8.0" r="0.95" fill="#F5D98A"/><circle cx="-3.5" cy="-2.7" r="0.85" fill="#F5D98A"/></g>
+            </g>
+            <ellipse cx="-4.0" cy="-6.8" rx="2.8" ry="9.1" fill="#fff" opacity=".38" transform="rotate(-14)"/>
+          </g>
+        </g>
+        <!-- r-ring -->
+        <g transform="translate(414 332) rotate(9)">
+          <path d="M-18.0,0 C-19.4,-95.8 -15.5,-176.4 -13.3,-238.7 C-13.3,-256.8 13.3,-256.8 13.3,-238.7 C15.5,-176.4 19.4,-95.8 18.0,0 Z" fill="url(#skinG)"/>
+          <path d="M-18.0,0 C-19.4,-95.8 -15.5,-176.4 -13.3,-238.7 C-13.3,-256.8 13.3,-256.8 13.3,-238.7 C15.5,-176.4 19.4,-95.8 18.0,0 Z" fill="url(#sideG)"/>
+          <ellipse cx="-4.3" cy="-131.0" rx="5.4" ry="75.6" fill="#fff" opacity=".18" filter="url(#soft)"/>
+          <path d="M-9.4,-105.8 Q0,-99.5 9.4,-105.8" fill="none" stroke="#DFAE94" stroke-width="1.4" stroke-linecap="round" opacity=".38"/>
+          <path d="M-8.6,-171.4 Q0,-165.6 8.6,-171.4" fill="none" stroke="#DFAE94" stroke-width="1.2" stroke-linecap="round" opacity=".3"/>
+          <path d="M-8.7,-214.2 Q0,-202.8 8.7,-214.2" fill="none" stroke="#E0B098" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <g transform="translate(0 -230.4)">
+            <path d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#F3E0D8" stroke="#E2B49C" stroke-width=".7"/>
+          </g>
+        </g>
+        <g clip-path="url(#fnc6)">
+          <g transform="translate(414 332) rotate(9) translate(0 -230.4)">
+            <g class="nail-paint" style="--d:.06s">
+              <path class="paint-fill" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,1.7 C10.9,13.0 6.6,21.6 0,21.6 C-6.6,21.6 -10.9,13.0 -10.9,1.7 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#F2BFCB"/>
+              <path class="art-french" d="M0,-21.6 C6.0,-18.4 10.9,-5.4 10.9,-2.6 C4.9,-0.4 -4.9,-0.4 -10.9,-2.6 C-10.9,-5.4 -6.0,-18.4 0,-21.6 Z" fill="#FFFFFF" opacity="0"/>
+              <g class="art-glitter" opacity="0"><circle cx="-3.8" cy="-10.8" r="1.2" fill="#fff"/><circle cx="3.3" cy="-6.5" r="1" fill="#fff"/><circle cx="-1.1" cy="3.2" r="1.3" fill="#fff"/><circle cx="4.9" cy="-14.0" r="0.9" fill="#fff"/><circle cx="-5.5" cy="8.6" r="1" fill="#fff"/><circle cx="0.5" cy="-17.3" r="0.8" fill="#fff"/><circle cx="3.8" cy="7.6" r="0.95" fill="#F5D98A"/><circle cx="-3.3" cy="-2.6" r="0.85" fill="#F5D98A"/></g>
+            </g>
+            <ellipse cx="-3.8" cy="-6.5" rx="2.6" ry="8.6" fill="#fff" opacity=".38" transform="rotate(-14)"/>
+          </g>
+        </g>
+        <!-- r-pinky -->
+        <g transform="translate(458 322) rotate(16)">
+          <path d="M-16.5,0 C-17.9,-76.0 -14.4,-140.0 -12.2,-187.8 C-12.2,-204.4 12.2,-204.4 12.2,-187.8 C14.4,-140.0 17.9,-76.0 16.5,0 Z" fill="url(#skinG)"/>
+          <path d="M-16.5,0 C-17.9,-76.0 -14.4,-140.0 -12.2,-187.8 C-12.2,-204.4 12.2,-204.4 12.2,-187.8 C14.4,-140.0 17.9,-76.0 16.5,0 Z" fill="url(#sideG)"/>
+          <ellipse cx="-4.0" cy="-104.0" rx="5.0" ry="60.0" fill="#fff" opacity=".18" filter="url(#soft)"/>
+          <path d="M-8.6,-84.0 Q0,-79.0 8.6,-84.0" fill="none" stroke="#DFAE94" stroke-width="1.4" stroke-linecap="round" opacity=".38"/>
+          <path d="M-7.9,-136.0 Q0,-131.4 7.9,-136.0" fill="none" stroke="#DFAE94" stroke-width="1.2" stroke-linecap="round" opacity=".3"/>
+          <path d="M-8.0,-165.3 Q0,-154.9 8.0,-165.3" fill="none" stroke="#E0B098" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+          <g transform="translate(0 -180.2)">
+            <path d="M0,-19.8 C5.5,-16.8 10.0,-5.0 10.0,1.6 C10.0,11.9 6.0,19.8 0,19.8 C-6.0,19.8 -10.0,11.9 -10.0,1.6 C-10.0,-5.0 -5.5,-16.8 0,-19.8 Z" fill="#F3E0D8" stroke="#E2B49C" stroke-width=".7"/>
+          </g>
+        </g>
+        <g clip-path="url(#fnc7)">
+          <g transform="translate(458 322) rotate(16) translate(0 -180.2)">
+            <g class="nail-paint" style="--d:.12s">
+              <path class="paint-fill" d="M0,-19.8 C5.5,-16.8 10.0,-5.0 10.0,1.6 C10.0,11.9 6.0,19.8 0,19.8 C-6.0,19.8 -10.0,11.9 -10.0,1.6 C-10.0,-5.0 -5.5,-16.8 0,-19.8 Z" fill="#F2BFCB"/>
+              <path class="art-french" d="M0,-19.8 C5.5,-16.8 10.0,-5.0 10.0,-2.4 C4.5,-0.4 -4.5,-0.4 -10.0,-2.4 C-10.0,-5.0 -5.5,-16.8 0,-19.8 Z" fill="#FFFFFF" opacity="0"/>
+              <g class="art-glitter" opacity="0"><circle cx="-3.5" cy="-9.9" r="1.2" fill="#fff"/><circle cx="3.0" cy="-5.9" r="1" fill="#fff"/><circle cx="-1.0" cy="3.0" r="1.3" fill="#fff"/><circle cx="4.5" cy="-12.9" r="0.9" fill="#fff"/><circle cx="-5.0" cy="7.9" r="1" fill="#fff"/><circle cx="0.5" cy="-15.8" r="0.8" fill="#fff"/><circle cx="3.5" cy="6.9" r="0.95" fill="#F5D98A"/><circle cx="-3.0" cy="-2.4" r="0.85" fill="#F5D98A"/></g>
+            </g>
+            <ellipse cx="-3.5" cy="-5.9" rx="2.4" ry="7.9" fill="#fff" opacity=".38" transform="rotate(-14)"/>
+          </g>
+        </g>
+      </svg>
+      <span class="hand-shadow" aria-hidden="true"></span>
+      <span class="tryon-spark" style="top:12%;inset-inline-start:16%"></span>
+      <span class="tryon-spark" style="top:8%;inset-inline-end:20%"></span>
+      <span class="tryon-spark" style="top:42%;inset-inline-end:10%"></span>
+
+      <div class="tryon-swatches" role="group" aria-label="בחירת גוון לק">
+        <button class="swatch-btn" data-color="#F2BFCB" data-name="ורוד אבקתי" style="--c:#F2BFCB" aria-label="ורוד אבקתי" aria-pressed="false"></button>
+        <button class="swatch-btn" data-color="#C22742" data-name="אדום שפתון" style="--c:#C22742" aria-label="אדום שפתון" aria-pressed="false"></button>
+        <button class="swatch-btn" data-color="#7A3247" data-name="שזיף עמוק" style="--c:#7A3247" aria-label="שזיף עמוק" aria-pressed="false"></button>
+        <button class="swatch-btn" data-color="#E3B492" data-name="ניוד קרמל" style="--c:#E3B492" aria-label="ניוד קרמל" aria-pressed="false"></button>
+        <button class="swatch-btn" data-color="#D9B26A" data-name="זהב שמפניה" style="--c:#D9B26A" aria-label="זהב שמפניה" aria-pressed="false"></button>
+        <button class="swatch-btn" data-color="#C9B6E4" data-name="לילך מעודן" style="--c:#C9B6E4" aria-label="לילך מעודן" aria-pressed="false"></button>
+        <button class="swatch-btn sw-french" data-color="#EFD6C2" data-art="french" data-name="פרנץ' קלאסי" aria-label="פרנץ' קלאסי" aria-pressed="false"></button>
+        <button class="swatch-btn sw-ombre" data-color="url(#gradOmbre)" data-name="אומברה ורוד־זהב" aria-label="אומברה ורוד־זהב" aria-pressed="false"></button>
+        <button class="swatch-btn sw-glitter" data-color="#F2BFCB" data-art="glitter" data-name="גליטר רוזה" aria-label="גליטר רוזה" aria-pressed="false"></button>
+        <button class="swatch-btn sw-holo" data-color="url(#gradHolo)" data-name="הולו פסטל" aria-label="הולו פסטל" aria-pressed="false"></button>
+        <button class="swatch-btn sw-lilac" data-color="url(#gradLilac)" data-name="אומברה לילך" aria-label="אומברה לילך" aria-pressed="false"></button>
+        <button class="swatch-btn sw-rosegold" data-color="url(#gradRoseGold)" data-name="רוז גולד מטאלי" aria-label="רוז גולד מטאלי" aria-pressed="false"></button>
+        <button class="swatch-btn sw-split" data-color="url(#gradSplit)" data-name="חצי־חצי שזיף" aria-label="חצי־חצי שזיף" aria-pressed="false"></button>
+        <button class="swatch-btn sw-sunset" data-color="url(#gradSunset)" data-name="שקיעה חמה" aria-label="שקיעה חמה" aria-pressed="false"></button>
+      </div>
+      <p class="tryon-name" id="tryonName">איזה גוון את היום?</p>
+      <span id="tryonLive" class="sr-only" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">מה אפשר לעשות אצלנו</div>
+      <h2>הטיפולים</h2>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <div class="num">01</div>
+        <h3>מניקור ג'ל</h3>
+        <p>הקלאסיקה שתמיד עובדת. מחזיק בערך 3 שבועות בלי להתקלף, ויוצא מבריק. מטפלים גם בעור מסביב.</p>
+        <div class="price">מ-₪120</div>
+      </div>
+      <div class="card reveal">
+        <div class="num">02</div>
+        <h3>בנייה באקריל</h3>
+        <p>בשביל מי שרוצה אורך וחוזק. בונים בדיוק לצורה ולאורך שאת אוהבת — ולא נשבר בקלות.</p>
+        <div class="price">מ-₪180</div>
+      </div>
+      <div class="card reveal">
+        <div class="num">03</div>
+        <h3>נייל ארט</h3>
+        <p>פה נהיה כיף. ציורים ביד, אבנים, אפקט כרום, פרנץ' — תביאי רעיון או תמונה ונראה מה אפשר.</p>
+        <div class="price">מ-₪40 לעיצוב</div>
+      </div>
+      <div class="card reveal">
+        <div class="num">04</div>
+        <h3>פדיקור</h3>
+        <p>פינוק אמיתי לרגליים. פילינג, עיסוי קצר ולק בצבע שתבחרי. אחרי זה בא לך ללכת יחפה.</p>
+        <div class="price">מ-₪150</div>
+      </div>
+      <div class="card reveal">
+        <div class="num">05</div>
+        <h3>מילוי</h3>
+        <p>אחרי 3–4 שבועות הציפורן גדלה והבנייה צריכה רענון. תקפצי, נסדר ותצאי כמו חדשה.</p>
+        <div class="price">מ-₪110</div>
+      </div>
+      <div class="card reveal">
+        <div class="num">06</div>
+        <h3>כלות</h3>
+        <p>היום הכי חשוב שלך — מגיע לו תשומת לב. עושים ניסיון מראש ומתאימים בדיוק לשמלה.</p>
+        <div class="price">נדבר אישית</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">קצת מהעבודות</div>
+      <h2>גלריה</h2>
+    </div>
+    <div class="tiles" id="tiles"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-inner">
+    <div class="about-text reveal">
+      <div class="eyebrow">קצת עלינו</div>
+      <h2>סטודיו קטן, יחס אישי</h2>
+      <p>בכוונה לא לוקחים הרבה לקוחות ביום. אצלנו לא רצים — יש זמן לשבת, להתייעץ על הצבע, ולעשות עבודה נקייה בלי לחץ.</p>
+      <p>עובדים רק עם חומרים טובים ומחטאים כל כלי בין לקוחה ללקוחה. ככה זה צריך להיות, בלי פשרות.</p>
+      <div class="about-chips">
+        <span class="chip"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>חומרים פרימיום</span>
+        <span class="chip"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>חיטוי מלא בין לקוחות</span>
+        <span class="chip"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>בלי לחץ, בקצב שלך</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">8+</div><div class="l">שנים בתחום</div></div>
+        <div class="stat"><div class="n">100%</div><div class="l">כלים מחוטאים</div></div>
+      </div>
+    </div>
+    <div class="about-visual reveal">
+      <img src="images/Work1.jpg" alt="עבודת מניקור בסטודיו Ronail" loading="lazy">
+      <div class="av-overlay"></div>
+      <div class="float one">
+        <div class="ft"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 18.9 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg>4.9</div>
+        <div class="fs">דירוג ממוצע</div>
+      </div>
+      <div class="float two"><div class="ft">פתוח א׳–ה׳</div><div class="fs">9:00–20:00</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="band reveal" id="contact">
+  <h2>בא לך לקבוע תור?</h2>
+  <p>שלחי לנו הודעה בוואטסאפ, נמצא תאריך ושעה שמתאימים לך.</p>
+  <button class="btn-primary" onclick="window.open('https://wa.me/972535221252','_blank')">דברי איתנו בוואטסאפ</button>
+</section>
+</main>
+
+<footer role="contentinfo">
+  <div class="foot-grid">
+    <div class="foot-col">
+      <div class="logo">Ro<span style="color:var(--gold)">nail</span></div>
+      <p style="margin-top:12px;color:#cbb3b8;font-weight:300;max-width:30ch">ציפורניים יפות בלי לחץ, בלב באר שבע.</p>
+    </div>
+    <div class="foot-col">
+      <h4>ניווט</h4>
+      <a href="#services">טיפולים</a>
+      <a href="#gallery">גלריה</a>
+      <a href="#about">הסטודיו</a>
+      <a href="accessibility.html">הצהרת נגישות</a>
+    </div>
+    <div class="foot-col">
+      <h4>צרו קשר</h4>
+      <a href="https://wa.me/972535221252">וואטסאפ</a>
+      <a href="https://instagram.com">אינסטגרם</a>
+      <a href="tel:+972535221252">053-522-1252</a>
+      <a href="mailto:ronaildray@gmail.com">ronaildray@gmail.com</a>
+    </div>
+    <div class="foot-col">
+      <h4>שעות</h4>
+      <a>ראשון–חמישי · 9:00–20:00</a>
+      <a>שישי · 9:00–14:00</a>
+      <a>שבת · סגור</a>
+    </div>
+  </div>
+  <div class="foot-bottom">© 2026 Ronail · כל הזכויות שמורות</div>
+</footer>
+
+<!-- ===== וידג'ט נגישות · תקנה 35 / IS 5568 ===== -->
+<button id="a11y-trigger" aria-label="פתיחת תפריט נגישות" aria-expanded="false" aria-controls="a11y-panel" aria-keyshortcuts="Alt+A">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><circle cx="12" cy="3.7" r="2"/><path d="M21 7.6c0 .6-.5 1-1.1 1-2 0-4-.4-5.8-1v3.4l2.9 8.3c.2.6-.1 1.2-.7 1.4-.6.2-1.3-.1-1.5-.7L12 15.2l-1.8 4.8c-.2.6-.9.9-1.5.7-.6-.2-.9-.8-.7-1.4l2.9-8.3V7.6C9.1 8.2 7.1 8.6 5.1 8.6c-.6 0-1.1-.4-1.1-1s.5-1 1.1-1c2.5 0 5-.7 6.9-1.5 1.9.8 4.4 1.5 6.9 1.5.6 0 1.1.4 1.1 1Z"/></svg>
+</button>
+<div id="a11y-panel" role="dialog" aria-modal="false" aria-label="הגדרות נגישות">
+  <h2>נגישות</h2>
+  <p class="a11y-sub">התאמת האתר לצרכים שלך · קיצור מקלדת Alt+A</p>
+  <div class="a11y-grid">
+    <button class="a11y-btn" data-a11y="links" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>
+      הדגשת קישורים</button>
+    <button class="a11y-btn" data-a11y="contrast" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" fill="currentColor" stroke="none"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+      ניגודיות גבוהה</button>
+    <button class="a11y-btn" data-a11y="text" aria-label="גודל טקסט">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><text x="12" y="18" text-anchor="middle" font-size="18" font-weight="700" font-family="serif">A</text></svg>
+      גודל טקסט <span class="a11y-val">100%</span></button>
+    <button class="a11y-btn" data-a11y="lines" aria-label="מרווח שורות">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      מרווח שורות <span class="a11y-val">רגיל</span></button>
+    <button class="a11y-btn" data-a11y="readable" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h6"/></svg>
+      פונט קריא</button>
+    <button class="a11y-btn" data-a11y="headings" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><text x="12" y="18" text-anchor="middle" font-size="16" font-weight="700" font-family="serif">H</text></svg>
+      הדגשת כותרות</button>
+    <button class="a11y-btn" data-a11y="motion" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/></svg>
+      עצירת אנימציות</button>
+    <button class="a11y-reset" data-a11y="reset">איפוס הגדרות נגישות</button>
+    <p class="a11y-statement"><a href="accessibility.html">להצהרת הנגישות המלאה</a></p>
+  </div>
+</div>
+<div id="a11y-live" class="sr-only" role="status" aria-live="polite"></div>
+
+
+
+<script src="script.js" defer></script>
+</body>
+</html>
