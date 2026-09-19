@@ -1,1 +1,3 @@
 .hintrc
+# large unused clips — not deployed (see chat)
+images/studio-*.mp4

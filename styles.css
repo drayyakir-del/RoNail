@@ -133,7 +133,17 @@
     transition:transform .5s var(--ease-spring),box-shadow .5s var(--ease-out);
   }
   .hv-card img,.hv-card video{width:100%;height:100%;object-fit:cover;border-radius:17px;display:block;background:var(--blush)}
-  .hv-video figcaption::before{
+  /* rotating stage on the front card */
+  .hv-slides{position:absolute;inset:8px;border-radius:17px;overflow:hidden;background:var(--blush)}
+  .hv-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s var(--ease-out)}
+  .hv-slide.is-on{opacity:1}
+  .hv-dots{position:absolute;bottom:20px;inset-inline-end:20px;display:flex;gap:6px}
+  .hv-dots i{
+    width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);
+    box-shadow:0 1px 3px rgba(46,26,32,.4);transition:background .4s ease,width .4s ease;
+  }
+  .hv-dots i.is-on{background:#fff;width:16px;border-radius:4px}
+  figcaption.is-video::before{
     content:'';width:7px;height:7px;border-radius:50%;background:#e0415c;
     display:inline-block;margin-inline-end:7px;vertical-align:middle;
     animation:pulse 2.2s ease-out infinite;

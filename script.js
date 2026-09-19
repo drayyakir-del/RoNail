@@ -122,19 +122,49 @@
      ============================================================ */
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // hero video loop — respect the user's reduced-motion preference
-  const heroLoop=document.getElementById('heroLoop');
-  if(heroLoop){
-    const noMotion = reduce || document.documentElement.classList.contains('a11y-reduce-motion');
+  // hero stage — a slow carousel of work: the clip plays, then the photos rotate
+  const stage=document.getElementById('hvStage');
+  if(stage){
+    const slides=[...stage.querySelectorAll('.hv-slide')];
+    const cap=document.getElementById('hvCap');
+    const dots=document.getElementById('hvDots');
+    const noMotion=reduce||document.documentElement.classList.contains('a11y-reduce-motion');
+    slides.forEach(()=>dots.appendChild(document.createElement('i')));
+    const marks=[...dots.children];
+    const paint=i=>{
+      slides.forEach((s,n)=>s.classList.toggle('is-on',n===i));
+      marks.forEach((m,n)=>m.classList.toggle('is-on',n===i));
+      cap.textContent=slides[i].dataset.cap;
+      cap.classList.toggle('is-video',slides[i].tagName==='VIDEO');
+    };
+    paint(0);
+
     if(noMotion){
-      heroLoop.removeAttribute('autoplay');heroLoop.pause();heroLoop.controls=true;
+      const v=slides.find(s=>s.tagName==='VIDEO');
+      if(v){v.removeAttribute('autoplay');v.pause();v.controls=true}
     }else{
-      // play only while visible; some browsers stop an autoplaying loop on their own
-      const tryPlay=()=>heroLoop.play().catch(()=>{});
-      new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?tryPlay():heroLoop.pause()),{threshold:.25})
-        .observe(heroLoop);
-      document.addEventListener('visibilitychange',()=>{if(!document.hidden)tryPlay()});
-      heroLoop.addEventListener('pause',()=>{if(!document.hidden)setTimeout(tryPlay,250)});
+      let i=0,timer=null,live=false;
+      const clear=()=>{clearTimeout(timer);timer=null};
+      const show=n=>{
+        clear();
+        slides.forEach(s=>{if(s.tagName==='VIDEO'&&s!==slides[n])s.pause()});
+        i=n;paint(i);
+        if(!live)return;
+        const el=slides[i];
+        if(el.tagName==='VIDEO'){
+          el.currentTime=0;el.play().catch(()=>{});
+          timer=setTimeout(next,(el.duration||3)*1000+400);
+        }else{
+          timer=setTimeout(next,3800);
+        }
+      };
+      const next=()=>show((i+1)%slides.length);
+      // run only while the hero is actually on screen
+      new IntersectionObserver(es=>es.forEach(e=>{
+        live=e.isIntersecting;
+        if(live)show(i); else {clear();slides.forEach(s=>{if(s.tagName==='VIDEO')s.pause()})}
+      }),{threshold:.25}).observe(stage);
+      document.addEventListener('visibilitychange',()=>{if(document.hidden){clear()}else if(live){show(i)}});
     }
   }
 
