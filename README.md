@@ -1,192 +1,135 @@
-# Ronail — אתר תדמית לסטודיו ציפורניים
+# Ronail — Interactive Nail Studio Website
 
-אתר תדמית של עמוד אחד (One-Page) לסטודיו ציפורניים פרטי בבאר שבע, עם **מניקור אינטראקטיבי**: המבקרת בוחרת גוון לק — והלק נמרח בפועל על איור של אצבעות, ציפורן אחרי ציפורן.
+A single-page marketing site for a nail studio, built around one idea: **let the visitor try a polish shade before she books.** Pick a color, and the polish physically fills the nails on an illustrated hand — finger by finger, bottom to top.
 
-נבנה ב-HTML, CSS ו-JavaScript נטו. **בלי פריימוורק, בלי build step, בלי תלויות** — פותחים את `index.html` בדפדפן וזהו.
+Built with **vanilla HTML, CSS and JavaScript. Zero dependencies, zero build step.** Every animation, the SVG hand, and a full accessibility engine are hand-written.
 
----
+**[Live Demo](#)** · **[Technical Deep-Dive (Hebrew)](TECHNICAL.md)**
 
-## תוכן העניינים
-
-- [הפעלה](#הפעלה)
-- [מבנה הפרויקט](#מבנה-הפרויקט)
-- [הפיצ'ר המרכזי — איך הלק נמרח על האצבעות](#הפיצר-המרכזי--איך-הלק-נמרח-על-האצבעות)
-- [מערכת האנימציות](#מערכת-האנימציות)
-- [נגישות](#נגישות)
-- [מה נלמד בפרויקט](#מה-נלמד-בפרויקט)
+<!-- TODO: add a GIF of the try-on in action here — it is the single most convincing asset in this repo.
+     ![Try-on demo](images/demo.gif) -->
 
 ---
 
-## הפעלה
+## Why this project is worth 60 seconds
 
-```bash
-git clone <repo-url>
-cd RoNail
-# פשוט לפתוח את index.html, או להרים שרת מקומי:
-python -m http.server 8000
-```
-
-אין `npm install`, אין קומפילציה. הפונטים (Cormorant Garamond + Heebo) נטענים מ-Google Fonts.
-
----
-
-## מבנה הפרויקט
-
-| קובץ | תיאור |
-|------|-------|
-| `index.html` | העמוד הראשי — hero, מניקור אינטראקטיבי, טיפולים, גלריה, אודות, צור קשר |
-| `styles.css` | כל העיצוב והאנימציות, כולל טוקני תנועה ומצבי נגישות |
-| `script.js` | וידג'ט נגישות, תפריט, reveal בגלילה, לוגיקת המניקור האינטראקטיבי |
-| `accessibility.html` | הצהרת נגישות (חובה חוקית בישראל) |
-| `story.html` | תבנית סטורי לאינסטגרם בגודל 1080×1920 — עיצוב עצמאי לצילום מסך |
-| `images/` | תמונות עבודות לגלריה |
+| | |
+|---|---|
+| **The polish fill effect** | Not a color swap. An SVG `clipPath` masks a paint layer that sits 58px below the nail and slides up — reading as liquid filling the nail. No canvas, no libraries. |
+| **Motion that feels physical** | Per-finger stagger (`--d`) rolls the color outward from the middle finger in a 120ms wave. The hand's float and its ground shadow run on the same 6.5s cycle — desync it and the eye immediately calls it fake. |
+| **Performance as a constraint, not a cleanup** | Rule set upfront: animate `transform` and `opacity` only. Every effect — parallax, float, reveal — was designed inside that limit, so nothing triggers layout. |
+| **Accessibility built into the foundation** | A 7-control a11y engine written from scratch, with preferences applied *before first paint* to prevent FOUC. |
+| **Full RTL** | `inset-inline-*` logical properties throughout — no mirrored duplicate rulesets. |
 
 ---
 
-## הפיצ'ר המרכזי — איך הלק נמרח על האצבעות
+## Tech Stack
 
-זה הלב של הפרויקט. במקום להחליף צבע מיידית (מה שנראה כמו baseline של CSS), הלק **עולה כמו נוזל מכיוון העורקית כלפי מעלה** — בדיוק כמו משיחת מכחול אמיתית.
+`HTML5` · `CSS3` (Custom Properties, Grid, Flexbox, `clip-path`, keyframes) · `Vanilla JavaScript (ES6+)` · `SVG` (hand-authored paths, gradients, clip paths) · `IntersectionObserver` · `localStorage` · `requestAnimationFrame`
 
-### הטריק: clipPath + translateY
+No framework. No bundler. No `node_modules`. Clone and open `index.html`.
 
-היד היא SVG מצויר ידנית (`viewBox="0 0 520 300"`) עם 8 אצבעות. לכל ציפורן יש שתי שכבות:
+---
 
-1. **הציפורן הטבעית** — צורה קבועה בגוון בז' (`#F3E0D8`)
-2. **שכבת הלק** — אותה צורה בדיוק, אבל **חתוכה בתוך `<clipPath>`** בצורת הציפורן
+## Engineering Highlights
 
-```html
-<clipPath id="fnc2">
-  <path transform="translate(150 337) rotate(-4) translate(0 -249.2)" d="M0,-22.8 C6.3,-19.4 ..."/>
-</clipPath>
+### 1. Liquid paint fill via `clipPath`
 
-<g clip-path="url(#fnc2)">
-  <g class="nail-paint" style="--d:0s">
-    <path class="paint-fill" d="..." fill="#F2BFCB"/>
-  </g>
-</g>
-```
-
-וב-CSS — שכבת הלק פשוט **יושבת 58 פיקסלים מתחת לציפורן**, מחוץ לאזור החיתוך, ולכן בלתי נראית:
+Each nail has two layers: the natural nail, and a paint layer clipped to the exact nail shape. The paint layer is parked outside the clip region and transitions into it.
 
 ```css
 .nail-paint{
-  transform: translateY(58px);
-  transition: transform .5s var(--ease-out) var(--d, 0s);
+  transform: translateY(58px);                          /* parked below the cuticle */
+  transition: transform .5s var(--ease-out) var(--d,0s); /* per-finger delay */
 }
 .tryon-hand.painted .nail-paint{ transform: translateY(0); }
 ```
 
-כשמוסיפים את המחלקה `.painted`, שכבת הלק מחליקה למעלה. ה-`clipPath` חותך את כל מה שגולש — **התוצאה נראית בדיוק כמו לק שנמזג ומתמלא מלמטה למעלה**, בלי אף אנימציית מסכה מסובכת.
+The clip does the visual work. One class toggle drives all 8 fingers.
 
-### ההשהיה המדורגת (Stagger)
+### 2. Forcing an animation to replay
 
-כל אצבע מקבלת משתנה CSS משלה — `--d` — ישירות ב-inline style:
-
-```
-זרת: --d:.12s   ·   קמיצה: --d:.06s   ·   אמה: --d:0s   ·   אצבע: --d:.06s   ·   אגודל: --d:.12s
-```
-
-ההשהיה מסודרת מהמרכז החוצה. התוצאה: הצבע לא קופץ על כל היד בבת אחת — הוא **מתגלגל על פני האצבעות** בגל של 120ms, וזה מה שנותן את התחושה של יד אמיתית שנצבעת.
-
-### הפעלה מחדש של האנימציה
-
-הבעיה הקלאסית: אם המחלקה `.painted` כבר קיימת, שינוי הצבע לא מפעיל את האנימציה מחדש. הפתרון — **כפיית reflow** בין ההסרה להוספה:
+Toggling a class off and on in the same frame is batched by the browser — nothing animates. A forced reflow between the two states makes the replay reliable:
 
 ```js
 hand.classList.remove('painted');
-void hand.getBoundingClientRect();   // מכריח את הדפדפן לחשב מחדש
+void hand.getBoundingClientRect();   // flush pending style changes
 fills.forEach(p => p.style.fill = color);
 hand.classList.add('painted');
 ```
 
-בלי השורה האמצעית הדפדפן היה מאחד (batch) את שתי הפעולות ולא רואה שינוי כלל.
+### 3. CSS variables as the JS↔CSS boundary
 
-### 14 גוונים — ומה שמעבר לצבע אחיד
+Instead of writing `style.transitionDelay` for every finger from JS, each finger carries its own `--d` and CSS reads it. Timing logic stays in CSS; JS toggles one class. Easier to tune, easier to maintain.
 
-הפלטה כוללת גוונים אחידים (ורוד אבקתי, אדום שפתון, שזיף עמוק, ניוד קרמל...) אבל גם עיצובים מורכבים:
+### 4. Scroll reveal with a failure path
 
-- **גרדיאנטים** — אומברה, הולוגרפי, רוז־גולד, שקיעה, חצי־חצי. מוגדרים כ-`<linearGradient>` ב-`<defs>` ומוחלים דרך `fill="url(#gradOmbre)"`. חשוב: `gradientUnits="userSpaceOnUse"` — אחרת הגרדיאנט מתעוות עם כל צורת ציפורן.
-- **פרנץ'** — שכבת `<path>` לבנה נפרדת בצורת הקצה העליון, שמופיעה ב-`opacity` עם השהיה של 0.3s — כאילו נמשחה *אחרי* שהבסיס התייבש.
-- **גליטר** — קבוצת 8 עיגולים זעירים בלבן וזהב, מופיעה באותה שיטה.
+`IntersectionObserver` handles reveals — but a missed callback (mid-page reload, resize) would leave content stuck at `opacity: 0`. A `revealNear()` fallback runs on scroll/resize/load and reveals anything already in view. **Content never disappears because an API misfired.**
 
-כל בחירת גוון מלווה גם ב-3 ניצוצות שקופצים (`sparkPop`), בשם הגוון שנכנס בעדינות, ובהודעת `aria-live` לקוראי מסך.
+### 5. Accessibility engine
+
+Seven controls (link emphasis, high contrast, 4 text sizes, line spacing, readable font, heading emphasis, motion off), persisted to `localStorage`.
+
+The part worth noting: an inline script in `<head>`, before any stylesheet, reads the saved preferences and applies classes to `<html>`. Without it, a user with high-contrast enabled sees a flash of the default theme on every page load. Also: system-level `prefers-reduced-motion` is respected by *not constructing* animated elements at all, `Alt+A` shortcut, `aria-pressed` on every toggle, `aria-live` announcements on shade selection, and 44×44px minimum touch targets.
 
 ---
 
-## מערכת האנימציות
+## Features
 
-כל התנועה באתר נשענת על **טוקני תנועה** אחידים ב-`:root` — כדי שהאתר כולו יזוז באותו קצב:
+- **Interactive try-on** — 14 shades including multi-stop gradients (ombré, holographic, rose-gold, split), French tips and glitter as independent layers
+- Ambient falling petals with randomized, non-synchronized loops
+- Scroll-triggered reveals, `rAF`-throttled hero parallax, self-drawing SVG brushstroke
+- Responsive nav with scroll-shrink, mobile menu with scroll-lock and `Esc` handling
+- Services, gallery, about and contact sections
+- Formal accessibility statement page
+- Instagram story template (1080×1920) as a standalone page
 
-```css
---ease-out:    cubic-bezier(.22,.61,.36,1);    /* יציאה טבעית */
---ease-spring: cubic-bezier(.2,.9,.3,1.35);    /* קפיצה קלה */
---dur-fast: .18s;  /* משוב מיידי ללחיצה */
---dur-med:  .32s;  /* hover */
---dur-slow: .62s;  /* כניסות */
+---
+
+## Running Locally
+
+```bash
+git clone <repo-url>
+cd RoNail
+python -m http.server 8000    # or just open index.html
 ```
 
-### האנימציות המרכזיות
+---
 
-| אנימציה | מה קורה |
-|---------|---------|
-| `fall` | 8 עלי כותרת נופלים ברקע — כל אחד עם משך, השהיה, מיקום וגודל אקראיים ב-JS, כך שאף לולאה לא מסונכרנת עם השנייה |
-| `wordIn` | כותרת ה-hero נכנסת מילה־מילה עם `blur()` שמתפוגג |
-| `gloss` | ברק שנע על פני המילה "תצאי" — `background-position` שרץ על גרדיאנט |
-| `paintIn` | קו מכחול SVG שמצייר את עצמו דרך `stroke-dasharray` + `stroke-dashoffset` |
-| `handFloat` | היד מרחפת ומסתובבת קלות (‎-1.2°) במחזור של 6.5 שניות |
-| `shadowBreathe` | הצל על הרצפה מתכווץ ומתבהר **באותו מחזור בדיוק** — בלי זה הריחוף נראה מזויף |
-| `haloPulse` / `spin` / `bob` | הילה נושמת ודיסק פלטה מסתובב ב-hero |
-| `sparkPop` | ניצוצות שקופצים ונעלמים אחרי בחירת גוון |
+## Project Structure
 
-### שתי החלטות שחשוב להכיר
-
-**1. אנימציה על `transform` ו-`opacity` בלבד.**
-שתי התכונות היחידות שהדפדפן מריץ על ה-GPU בלי לחשב מחדש layout. הפרלקסה ב-hero, למשל, לא נוגעת ב-`top` אלא ב-`transform: translateY()`, ורצה בתוך `requestAnimationFrame` עם דגל `ticking` — כדי שאירועי גלילה לא יערמו עשרות חישובים בפריים אחד.
-
-**2. Reveal בגלילה עם רשת ביטחון.**
-`IntersectionObserver` מוסיף מחלקה `.in` לכל אלמנט `.reveal` שנכנס למסך. אבל אם ה-observer מפספס (טעינה מחדש באמצע העמוד, שינוי גודל חלון) — אלמנט עלול להישאר ב-`opacity:0` לנצח. לכן יש גם `revealNear()` שרץ על scroll/resize/load ומגלה ידנית כל מה שכבר בשדה הראייה. **תוכן לא נעלם, גם אם ה-API נכשל.**
+```
+├── index.html          # main page — all sections
+├── styles.css          # design system, motion tokens, all animations
+├── script.js           # a11y engine, nav, scroll reveal, try-on logic
+├── accessibility.html  # formal accessibility statement
+├── story.html          # 1080×1920 Instagram story template
+└── images/             # gallery work samples
+```
 
 ---
 
-## נגישות
+## Known Limitations & Next Steps
 
-וידג'ט נגישות מלא שנבנה מאפס (`script.js`), עם 7 הגדרות: הדגשת קישורים, ניגודיות גבוהה, גודל טקסט (100/115/130/150%), מרווח שורות, פונט קריא, הדגשת כותרות ועצירת אנימציות.
+Being honest about scope is part of the work:
 
-נקודות מעניינות במימוש:
-
-- **מניעת הבהוב (FOUC)** — סקריפט inline ב-`<head>`, לפני כל CSS, קורא את ההעדפות מ-`localStorage` ומחיל מחלקות על `<html>` עוד לפני הצביעה הראשונה. בלי זה המשתמש היה רואה רבע שנייה של האתר הרגיל לפני שההעדפות שלו נכנסות.
-- כיבוד `prefers-reduced-motion` ברמת המערכת — אנימציות לא נבנות בכלל, לא רק "מוסתרות".
-- קיצור מקלדת `Alt+A`, סגירה ב-`Esc`, `aria-pressed` על כל כפתור, הודעות `aria-live` על כל שינוי.
-- כל אזורי הלחיצה במינימום 44×44 פיקסלים.
-- `skip-link` לתוכן הראשי, ו-`accessibility.html` כהצהרת נגישות פורמלית.
+- **No booking backend.** Contact goes to WhatsApp and phone. A real booking flow needs a calendar API and availability logic.
+- **The hand is a single illustrated pose.** Different nail shapes (almond, coffin, square) would require separate path sets — a meaningful extension.
+- **No automated tests.** For a static marketing site the cost/benefit didn't justify it; a build step would change that calculation.
+- **Gallery images are static.** A CMS or a simple JSON manifest would let the studio owner update work samples without touching code.
 
 ---
 
-## מה נלמד בפרויקט
+## What I Took From This
 
-**SVG כמדיום אנימציה, לא כאייקון.**
-`clipPath` פותר בעיות ויזואליות שקשה לפתור ב-DOM רגיל. הרעיון של "אלמנט זז בתוך אזור חתוך" מייצר אשליה של מילוי נוזל בלי canvas ובלי ספריות. גם `stroke-dasharray` + `stroke-dashoffset` — הדרך לגרום לקו לצייר את עצמו — נלמדו כאן.
+Building without a framework forced decisions that a framework usually hides: how the browser batches style changes, why `transform` and `opacity` are the only cheap properties to animate, and how much of "polish" is actually just two animations sharing a duration.
 
-**משתני CSS כגשר בין JS ל-CSS.**
-במקום לכתוב `element.style.transitionDelay` לכל אצבע ב-JS, כל אצבע מחזיקה `--d` משלה וה-CSS קורא ממנו. הלוגיקה נשארת ב-CSS, ה-JS רק מחליף מחלקה אחת. הרבה יותר נקי לתחזוקה.
+The accessibility work reframed the most: preferences have to load before first paint, animations have to know not to exist, and every visual interaction needs a verbal equivalent. That changes code structure, not just markup.
 
-**Reflow זה כלי, לא באג.**
-`void element.offsetWidth` נראה כמו שורה מיותרת — אבל זו הדרך הסטנדרטית להכריח את הדפדפן "לסגור" מצב CSS לפני שמתחילים את הבא. בלי הבנה של batching בדפדפן, אנימציה חוזרת פשוט לא תעבוד ולא ברור למה.
-
-**סינכרון בין אנימציות נפרדות זה מה שיוצר אמינות.**
-הריחוף של היד והצל שלה הם שתי אנימציות שונות לגמרי — אבל שתיהן 6.5 שניות. ברגע שהן מתפצלות, המוח מזהה שמשהו לא בסדר גם בלי לדעת להצביע על מה.
-
-**ביצועים זה החלטה ארכיטקטונית, לא אופטימיזציה בסוף.**
-מרגע שנקבע "רק `transform` ו-`opacity`", ההחלטה מכתיבה איך כל אפקט נבנה. הפרלקסה, הריחוף, ה-reveal — כולם נכתבו סביב האילוץ הזה מההתחלה, ולכן האתר רץ חלק גם במובייל.
-
-**נגישות עובדת רק אם היא בשכבה התשתיתית.**
-לא מספיק להוסיף `aria-label` בסוף. ההעדפות חייבות להיטען לפני הצביעה הראשונה, האנימציות חייבות לדעת לא להיווצר, וכל אינטראקציה ויזואלית (בחירת גוון) חייבת מקבילה מילולית ל-`aria-live`. זה משנה את מבנה הקוד, לא רק את התגיות.
-
-**RTL מלא זה החלטה עיצובית.**
-שימוש ב-`inset-inline-start/end` במקום `left/right` לאורך כל ה-CSS — כדי שהעיצוב יעבוד נכון בעברית בלי שכפול כללים.
+Full technical breakdown, in Hebrew: **[TECHNICAL.md](TECHNICAL.md)**
 
 ---
 
-## רישיון
+## License
 
-שימוש חופשי לצרכי לימוד. התמונות והתוכן שייכים לסטודיו Ronail.
+Free to use for learning purposes. Images and copy belong to Ronail studio.
