@@ -1,3 +1,4 @@
 .hintrc
-# large unused clips — not deployed (see chat)
-images/studio-*.mp4
+# full-length originals — kept locally, not deployed
+images/studio-1.mp4
+images/studio-2.mp4

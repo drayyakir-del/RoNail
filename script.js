@@ -127,13 +127,19 @@
   if(stage){
     const slides=[...stage.querySelectorAll('.hv-slide')];
     const cap=document.getElementById('hvCap');
-    const dots=document.getElementById('hvDots');
+    const thumbs=document.getElementById('hvThumbs');
     const noMotion=reduce||document.documentElement.classList.contains('a11y-reduce-motion');
-    slides.forEach(()=>dots.appendChild(document.createElement('i')));
-    const marks=[...dots.children];
+    slides.forEach((s,n)=>{
+      const b=document.createElement('button');
+      b.type='button';b.setAttribute('role','tab');
+      b.setAttribute('aria-label',s.dataset.cap);
+      b.innerHTML='<img src="'+s.dataset.thumb+'" alt="" loading="lazy">';
+      thumbs.appendChild(b);
+    });
+    const marks=[...thumbs.children];
     const paint=i=>{
       slides.forEach((s,n)=>s.classList.toggle('is-on',n===i));
-      marks.forEach((m,n)=>m.classList.toggle('is-on',n===i));
+      marks.forEach((m,n)=>{m.classList.toggle('is-on',n===i);m.setAttribute('aria-selected',n===i)});
       cap.textContent=slides[i].dataset.cap;
       cap.classList.toggle('is-video',slides[i].tagName==='VIDEO');
     };
@@ -152,10 +158,11 @@
         if(!live)return;
         const el=slides[i];
         if(el.tagName==='VIDEO'){
-          el.currentTime=0;el.play().catch(()=>{});
-          timer=setTimeout(next,(el.duration||3)*1000+400);
+          el.currentTime=0;el.playbackRate=.92;   // a touch slower reads calmer
+          el.play().catch(()=>{});
+          timer=setTimeout(next,((el.duration||3)/el.playbackRate)*1000+500);
         }else{
-          timer=setTimeout(next,3800);
+          timer=setTimeout(next,5000);
         }
       };
       const next=()=>show((i+1)%slides.length);
@@ -164,6 +171,7 @@
         live=e.isIntersecting;
         if(live)show(i); else {clear();slides.forEach(s=>{if(s.tagName==='VIDEO')s.pause()})}
       }),{threshold:.25}).observe(stage);
+      marks.forEach((m,n)=>m.addEventListener('click',()=>{live=true;show(n)}));
       document.addEventListener('visibilitychange',()=>{if(document.hidden){clear()}else if(live){show(i)}});
     }
   }
