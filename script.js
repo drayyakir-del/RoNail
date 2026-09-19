@@ -122,6 +122,22 @@
      ============================================================ */
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // hero video loop — respect the user's reduced-motion preference
+  const heroLoop=document.getElementById('heroLoop');
+  if(heroLoop){
+    const noMotion = reduce || document.documentElement.classList.contains('a11y-reduce-motion');
+    if(noMotion){
+      heroLoop.removeAttribute('autoplay');heroLoop.pause();heroLoop.controls=true;
+    }else{
+      // play only while visible; some browsers stop an autoplaying loop on their own
+      const tryPlay=()=>heroLoop.play().catch(()=>{});
+      new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?tryPlay():heroLoop.pause()),{threshold:.25})
+        .observe(heroLoop);
+      document.addEventListener('visibilitychange',()=>{if(!document.hidden)tryPlay()});
+      heroLoop.addEventListener('pause',()=>{if(!document.hidden)setTimeout(tryPlay,250)});
+    }
+  }
+
   // floating sparkles around the hero headline
   if (!reduce){
     const hero=document.querySelector('.hero');
